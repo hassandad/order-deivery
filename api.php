@@ -140,7 +140,8 @@ function get_order_list($page,$limit){
     global $mysqli;
     $response = array('http_code'=>500,'data'=>array());
     
-    $query = "SELECT id,distance,status FROM orders LIMIT $limit";
+    $query = "SELECT id,distance,status FROM orders LIMIT $limit OFFSET ".$page * $limit;
+    
     $result = $mysqli->query($query);
     
     if ($result->num_rows > 0) {
